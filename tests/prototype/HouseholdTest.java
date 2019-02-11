@@ -53,7 +53,6 @@ public class HouseholdTest {
 		for (Household currentHouse : households) {
 			assertEquals("correct", currentHouse.getWealth(), 100);
 		}
-		
 	}
 
 	@Test
@@ -62,6 +61,7 @@ public class HouseholdTest {
 
 	@Test
 	public void testConsume() {
+		
 	}
 
 }
