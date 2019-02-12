@@ -29,18 +29,20 @@ public class Household {
 	
 	// Class variables that represent wealth...
 	private int wealth;
+	private balancesheet ledger = new balancesheet(0,0);
 	
 	// Constructor that assigns a projection and starting wealth 
 	public Household (ContinuousSpace<Object> space, int startingWealth) {
 		this.space = space;
 		this.wealth = startingWealth;
+		this.ledger.increaseAssets(startingWealth);
 	}
 	
 	// Method that adds a random amount of wealth to the agent
 	@ScheduledMethod(start = 1, interval =1, priority = 5)
 	public void genWealth() {
-		this.wealth += RandomHelper.nextIntFromTo(1, 5);
-		System.out.println("Adding one more wealth to " + this + ". Current wealth is " + this.wealth );
+		this.ledger.increaseAssets(RandomHelper.nextIntFromTo(1, 5));
+		System.out.println("Adding one more wealth to " + this + ". Current wealth is " + this.ledger.getAssets() );
 	}
 	
 	// Method that saves a reference to the context, should be called as soon as the context has been build in
@@ -53,7 +55,7 @@ public class Household {
 	
 	// Access method
 	public int getWealth() {
-		return this.wealth;
+		return this.ledger.getAssets();
 	}
 	
 	// Method that builds the consumption network and then consumes, should be split into two 
@@ -73,10 +75,16 @@ public class Household {
 		tradingPartners.sort((p1, p2) -> Integer.compare(p1.getPrice(), p2.getPrice()));
 		
 		if(tradingPartners.get(0).canSellGoods() == true) {
-			tradingPartners.get(0).sellGoods(1);
+			transaction currentTransaction = new transaction (tradingPartners.get(0).getPrice(), tradingPartners.get(0), this);
+			this.parseTransaction(currentTransaction);
+			tradingPartners.get(0).sellGoods(1, currentTransaction);
+			System.out.println(this + " bought one good from " + tradingPartners.get(0));
+			System.out.println(this + "now has " + this.ledger.getAssets() + " money.");
+			/*
 			this.wealth -= tradingPartners.get(0).getPrice();
 			System.out.println(this + " bought one good from " + tradingPartners.get(0));
 			System.out.println(this + "now has " + this.wealth + " money.");
+			*/
 		}
 		
 		
@@ -84,6 +92,15 @@ public class Household {
 		
 		
 		
+	}
+	
+	public void parseTransaction(transaction transaction_args) {
+		if (transaction_args.getBuyer() == this) {
+			this.ledger.decreaseAssets(transaction_args.getAmount());
+		}
+		else {
+			System.out.println("Something bad happened");
+		}
 	}
 	
 	

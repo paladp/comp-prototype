@@ -34,9 +34,14 @@ public class ConsumptionFirm {
 	}
 	
 	// Method that other agents can call to buy from this agent
-	public void sellGoods( int amount) {
-		this.numOfGoods -= amount;
-		this.wealth += amount * this.price;
+	public void sellGoods( int amount , transaction transaction_args) {
+		if (transaction_args.getSeller() == this) {
+			this.numOfGoods -= amount;
+			this.wealth += transaction_args.getAmount();
+		}
+		else {
+			System.out.println("Something went wrong in consumption firm");
+		}
 	}
 	
 	// Check method to see if this agent can sell goods
