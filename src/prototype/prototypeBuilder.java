@@ -13,6 +13,8 @@ import repast.simphony.space.continuous.RandomCartesianAdder;
 import repast.simphony.space.graph.Network;
 import repast.simphony.util.collections.IndexedIterable;
 
+//If you see this the push from desktop worked
+
 public class prototypeBuilder implements ContextBuilder<Object> {
 	
 	// Class variables. Currently will fall into two different categories
