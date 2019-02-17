@@ -15,6 +15,8 @@ import repast.simphony.util.collections.IndexedIterable;
 
 //If you see this the push from desktop worked
 
+//If you see this the push from laptop worked
+
 public class prototypeBuilder implements ContextBuilder<Object> {
 	
 	// Class variables. Currently will fall into two different categories
