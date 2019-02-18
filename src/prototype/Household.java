@@ -8,6 +8,7 @@ package prototype;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import repast.simphony.context.Context;
@@ -26,6 +27,7 @@ public class Household {
 	// Class variables that hold the context the agent is in, as well as the projections
 	private ContinuousSpace<Object> space;
 	private Context context;
+	private bank myBank;
 	
 	// Class variables that represent wealth...
 	private int wealth;
@@ -85,12 +87,18 @@ public class Household {
 			System.out.println(this + " bought one good from " + tradingPartners.get(0));
 			System.out.println(this + "now has " + this.wealth + " money.");
 			*/
-		}
+		}	
+	}
+	
+	@ScheduledMethod(start =1, interval=1, priority =3)
+	public void assignBank() {
+		Iterable<bank> randomBankIterable = this.context.getRandomObjects(bank.class, 1);
+		Network<Object> bankNetwork = (Network<Object>)this.context.getProjection("bank network");
+		Iterator randomBankList = randomBankIterable.iterator();
+		this.myBank = (bank) randomBankList.next();
+		bankNetwork.addEdge(this, this.myBank);
 		
-		
-		
-		
-		
+		this.myBank.createAccount(this, this.ledger.getAssets());
 		
 	}
 	
@@ -101,6 +109,10 @@ public class Household {
 		else {
 			System.out.println("Something bad happened");
 		}
+		
+		this.myBank.parseTransaction(transaction_args);
+		
+		
 	}
 	
 	

@@ -3,4 +3,5 @@
 	xsi:noNamespaceSchemaLocation="http://repast.org/scenario/context">
   	<projection type="continuous space" id="space"/>
   	<projection type="network" id="consumption network"/>
+  	<projection type="network" id="bank network"/>
 </context>
