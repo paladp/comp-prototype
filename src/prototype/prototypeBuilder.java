@@ -46,14 +46,19 @@ public class prototypeBuilder implements ContextBuilder<Object> {
 		
 		// The standard way for creating a network, instead of a factory it's just a builder which takes in the 
 		// name, context, and then a boolean for a directed or non directed graph. 
-		NetworkBuilder<Object> netBuilder = new NetworkBuilder<Object> ("consumption network", context, false);
-		netBuilder.buildNetwork();
+		NetworkBuilder<Object> consumptionBuilder = new NetworkBuilder<Object> ("consumption network", context, false);
+		consumptionBuilder.buildNetwork();
+		
+		NetworkBuilder<Object> bankBuilder = new NetworkBuilder<Object> ("bank network", context, false);
+		bankBuilder.buildNetwork();
+		
 		
 		// Loop that adds agents to the context
 		int householdCount = 5;
 		for(int i = 0; i < householdCount; i++) {
 			context.add(new Household(space, 100));
 			context.add(new ConsumptionFirm(space, 100, 10));
+			context.add(new bank());
 		}
 		
 	

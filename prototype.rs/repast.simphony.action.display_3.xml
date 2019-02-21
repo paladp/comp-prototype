@@ -1,27 +1,39 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor simphonyVersion="2.6.0">
-  <name>Space Display</name>
+  <name>New Display</name>
   <type>2D</type>
   <styles>
     <entry>
-      <string>prototype.ConsumptionFirm</string>
+      <string>prototype.bank</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
+      <string>prototype.ConsumptionFirm</string>
+      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+    </entry>
+    <entry>
       <string>prototype.Household</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
+      <string>prototype.bank</string>
+      <string>prototype.bank.style_0.xml</string>
+    </entry>
+    <entry>
       <string>prototype.ConsumptionFirm</string>
-      <string>prototype.ConsumptionFirm.style_1.xml</string>
+      <null/>
     </entry>
     <entry>
       <string>prototype.Household</string>
-      <string>prototype.Household.style_1.xml</string>
+      <null/>
     </entry>
   </editedStyles>
   <netStyles>
+    <entry>
+      <string>bank network</string>
+      <string>repast.simphony.visualization.editedStyle.EditedEdgeStyle2D</string>
+    </entry>
     <entry>
       <string>consumption network</string>
       <string>repast.simphony.visualization.editedStyle.EditedEdgeStyle2D</string>
@@ -29,8 +41,12 @@
   </netStyles>
   <editedNetStyles>
     <entry>
+      <string>bank network</string>
+      <string>banknetwork.style_0.xml</string>
+    </entry>
+    <entry>
       <string>consumption network</string>
-      <string>consumptionnetwork.style_0.xml</string>
+      <string>consumptionnetwork.style_1.xml</string>
     </entry>
   </editedNetStyles>
   <frequency>ON_MOVE</frequency>
@@ -41,19 +57,23 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1973746494</hashCode>
+    <hashCode>-1247452828</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
+      <string>prototype.bank</string>
+      <int>0</int>
+    </entry>
+    <entry>
       <string>prototype.ConsumptionFirm</string>
-      <int>1</int>
+      <int>2</int>
     </entry>
     <entry>
       <string>prototype.Household</string>
-      <int>0</int>
+      <int>1</int>
     </entry>
   </layerOrder>
   <projections>
@@ -67,11 +87,23 @@
       <attributes/>
       <type>network</type>
     </repast.simphony.scenario.data.ProjectionData>
+    <repast.simphony.scenario.data.ProjectionData>
+      <id>bank network</id>
+      <attributes/>
+      <type>network</type>
+    </repast.simphony.scenario.data.ProjectionData>
   </projections>
   <visualizationProperties class="repast.simphony.visualization.UnitSizeLayoutProperties">
     <unitSize>15.0</unitSize>
   </visualizationProperties>
   <projectionDescriptors>
+    <entry>
+      <string>bank network</string>
+      <repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData[3]"/>
+        <props/>
+      </repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+    </entry>
     <entry>
       <string>consumption network</string>
       <repast.simphony.visualization.engine.DefaultProjectionDescriptor>
